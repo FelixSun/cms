@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cms2simple</title>
+    <link rel="stylesheet" href="dist/index.css">
+    <link rel="stylesheet" href="dist/styles.css">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="CMS2" style="height: 100%">
+      <my-canvas></my-canvas>
+      <spinner v-show="isLoading"></spinner>
+      <Toast v-show="isToasting"></Toast>
+      <router-view ></router-view>
+    </div>
+    <script src="/dist/main.js"></script>
+    <script>
+        
+// function getUrlParam(name)
+// {
+//   var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+//   var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+//   if (r!=null) return unescape(r[2]); return null; //返回参数值
+// } 
+
+// function saveComments(){
+//     var data ={};
+//     data.id = getUrlParam('id');
+//     data.email = $("#txtemail").val();
+//     data.content = $("#txtcontent").val();
+//     console.log(data);
+//     alert(data.email+"  "+data.id);
+  
+// }
+    </script>
+   
+  </body>
+</html>
