@@ -36,8 +36,31 @@ router.get('/api/getComments', (req, res) => {
   })
 })
 
+router.post('/api/readNum',(req,res)=> {
+  var _id = req.body.id
+  
+  var num = 0
+   db.Article.findOne({_id}, (err, doc) => {
+    //res.send(doc);
+    if(err){
+      console.log(err)
+    }else{
+      if(doc.readNum){
+        num =doc.readNum + 1;             
+      }else{
+          num += 1
+      }
+      var article= {
+           readNum : num 
+        }  
+      db.Article.findByIdAndUpdate(_id,article, fn)   
+    }
+  }) 
+  res.status(200).end()
+})
+
 router.post('/api/saveComment', (req, res) => {
-  const id = req.body._id
+  const id = req.body.id
   const comment = {
     email: req.body.email,
     contents: req.body.contents,
@@ -75,7 +98,8 @@ router.post('/api/saveArticle', (req, res) => {
   const article = {
     title: req.body.title,
     date: req.body.date,
-    content: req.body.content
+    content: req.body.content,
+    readNum: 0
   }
   if (id) {
     db.Article.findByIdAndUpdate(id, article, fn)

@@ -10,18 +10,21 @@ const userSchema = new Schema({
 const articleSchema = new Schema({
   title: String,
   date: Date,
-  content: String
+  content: String,
+  readNum: Intl
 })
 
-const linkSchema = new Schema({
+const linkSchema = new Schema({ 
   name: String,
   href: String
 })
 const commentSchema = new Schema({
+  nickName: String,
   email: String,
   content: String,
   createdate: Date,
-  articleID: String
+  articleID: String,
+  revert: Object
 })
 const Models = {
   User: mongoose.model('User', userSchema),

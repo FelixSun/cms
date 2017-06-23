@@ -40,9 +40,13 @@ export default {
     return Vue.http.get('/api/getArticle', {params: {id}})
       .then(response => {
         stopLoading(commit, start)
-
         commit('SET_ARTICLE', response.data)
       })
+  },
+   readNum ({commit,dispatch},id)  {
+     return Vue.http.post('/api/readNum',{id})
+       .then()
+       .catch((err)=>console.log(err))
   },
   saveArticle ({state, commit}) {
     return Vue.http.post('/api/saveArticle', state.article)
@@ -61,7 +65,7 @@ export default {
       })
   },
   deleteUser({state, commit, dispatch}, id){
-    alert(id)
+    //alert(id)
      return doToast(state, commit, {info: '确定要删除吗?', btnNum: 2})
       .then(() => Vue.http.post('/api/deleteUser', {id}))
       .finally(() => commit('TOASTING_TOGGLE', false))

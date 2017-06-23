@@ -33,6 +33,8 @@
   export default{
     created(){
       this.getArticles()
+      const id = this.$route.query.id
+      this.readNum();
     },
     computed: {
       ...mapState(['articles']),

@@ -2,8 +2,10 @@
   <main class="wrap">
     <my-header></my-header>
     <section class="article">
+    
       <article class="block">
         <div class="title">{{article.title}}</div>
+        <div class="ltitle"><span>阅读({{article.readNum}})</span></div>
         <div class="info">{{article.date |toDate}}</div>
         <div class="content" v-html="article.content"></div>
       </article>
@@ -22,15 +24,16 @@
   </main>
 </template>
 <script>
-  import {mapState}   from 'vuex'
+  import {mapState,mapActions}   from 'vuex'
   import marked       from '../../assets/js/marked.min'
   import hljs         from '../../assets/js/highlight.pack'
   import MyHeader     from './MyHeader.vue'
   import MyFooter     from './MyFooter.vue'
 
   export default{
-    created(){
-      this.fetchData()
+    created(){      
+      this.readNum()      
+      this.fetchData()      
     },
     updated(){
       this.highlight()
@@ -44,7 +47,10 @@
           hljs.initHighlighting.called = false
           hljs.initHighlighting()
         }, 0)
-      }
+      },
+      readNum(){
+        this.$store.dispatch('readNum', this.$route.query.id)        
+      },
     },
     computed: mapState({
       article: state => {
@@ -132,7 +138,11 @@
           color: #525252;
         }
       }
-    }
+      .ltitle{
+      text-align:right;
+      padding-right:50px;
+      }
+    }    
   }
   div.comment{
     .subSaveComment {
