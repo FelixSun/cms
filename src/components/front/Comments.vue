@@ -42,20 +42,33 @@
       save(){        
         if (!this.nickName.length) return this.info = '大侠请留下名号！'
         if (!this.email.length) return this.info = '邮箱地址何在？'
-        if (!this.content.length) return this.info = '大侠，请先留言在保存可好！'
+        if (!this.content.length) return this.info = '大侠，请先留言再保存可好！'
         
         this.SET_COMMENT({nickName: this.nickName, email: this.email, content: this.content, articleID: this.$route.query.id, createdate: '2017-06-26 11:40:51'})
         this.saveComment()
-          .then(() => window.location.reload())
+          .then( 
+              this.$store.dispatch('getComments', this.$route.query.id) , 
+              this.nickName='',
+              this.email='',
+              this.content=''   
+              )
           .catch(err => console.log(err))
       },
       ...mapActions(['saveComment']),
-      ...mapMutations(['SET_COMMENT'])
+      ...mapMutations(['SET_COMMENT']),
+      clearInfo(){
+        this.info = ''
+      },
     },
     computed:{
       ...mapState(['comment']),
       ...mapState(['comments'])
-      }
+    },
+    watch: {
+      nickName: 'clearInfo',
+      email: 'clearInfo',
+      content:'clearInfo'
+    }
   }
 
 </script>
@@ -107,6 +120,11 @@
     .ccontent{
         padding: 5px 30px;
         color: orangered;
+    }
+    .info{
+        color: red;
+        font-size: 16px;
+        margin-bottom: 15px;
     }
   }
  

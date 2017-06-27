@@ -75,6 +75,7 @@
       .title {
         margin: 0.65em 0;
         font-size: 1.5em;
+        text-align:center;
       }
       .info {
         color: #7f8c8d;
@@ -136,37 +137,6 @@
       }
     }    
   }
-  div.comment{
-    .subSaveComment {
-      border: 1px solid #42b983;
-      color: #42b983;
-      background-color: #fff;
-      transition: all .6s;
-      border-radius: 4px;
-      float: left;
-      height: 30px;
-      width: 80px;
-      margin-left:5px;
-    }
-    .txtemail{
-      border: 1px solid gray;
-      width: 50%;
-      margin-left: 5px;
-      line-height: 30px;  
-      padding:1px 6px;
-    }
-    #txtcontent{
-      resize: none;
-      width: 98%;
-      height: 150px;
-      margin: 5px;
-      border: 1px solid gray;
-      padding:1px 6px;
-    }
-    .subSaveComment:hover{
-      color:white;
-      background-color:#42b983;
-    }
-  }
+
  
 </style>

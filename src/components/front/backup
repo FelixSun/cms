@@ -1,0 +1,29 @@
+   if (!this.nickName.length) return this.info = '大侠请留下名号！'
+        if (!this.email.length) return this.info = '邮箱地址何在？'
+        if (!this.content.length) return this.info = '大侠，请先留言在保存可好！'
+
+        
+      getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                + " " + date.getHours() + seperator2 + date.getMinutes()
+                + seperator2 + date.getSeconds();
+        return currentdate;
+      },
+
+
+        this.SET_COMMENT({nickName: this.nickName, email: this.email, content: this.content, articleID: this.$route.query.id, createdate: '2017-06-26 11:40:51'})
+        this.saveComment()
+          .then(() => window.location.reload())
+          .catch(err => console.log(err))
+      

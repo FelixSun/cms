@@ -149,10 +149,15 @@ export default {
       })
   },
   saveComment({state,commit,dispatch}){
-    console.log(state.comment)
+    var data ={
+      email: state.comment.email,
+      nickName: state.comment.nickName,
+      content: state.comment.content,
+      articleID: state.comment.articleID
+    }
     var id = state.comment.articleID
-    return Vue.http.post('/api/saveComment', state.comment)
-      //.then(() =>  dispatch('getComments',{params:{id}}))
+    return Vue.http.post('/api/saveComment', data)
+      .then(() =>  dispatch('getComments',{params:{id}}))
       .then()
       .finally(() => commit('TOASTING_TOGGLE', false))
   }
