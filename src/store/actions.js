@@ -129,6 +129,7 @@ export default {
       )
       .finally(() => commit('TOASTING_TOGGLE', false))
   },
+
   login ({commit}, payload) {
     return Vue.http.post('/api/login', payload)
       .then(response => {
@@ -140,19 +141,19 @@ export default {
       })
   },
   getComments({commit},id){
-    const start = beginLoading(commit)
+    
     return Vue.http.get('/api/getComments', {params: {id}})
       .then(response => response.json())
-      .then(coments => {
-        stopLoading(commit, start)
-        commit('SET_COMMENTS', coments)
+      .then(comments => {
+        commit('SET_COMMENTS', comments)
       })
   },
-  saveComments({state,commit}){
-    return Vue.http.post('/api/saveComment', state.comments)
-      .then(
-        //异步刷新当前页面
-        console.log('savecomments'+state)        
-      ).finally(() => commit('TOASTING_TOGGLE', false))
+  saveComment({state,commit,dispatch}){
+    console.log(state.comment)
+    var id = state.comment.articleID
+    return Vue.http.post('/api/saveComment', state.comment)
+      //.then(() =>  dispatch('getComments',{params:{id}}))
+      .then()
+      .finally(() => commit('TOASTING_TOGGLE', false))
   }
 }

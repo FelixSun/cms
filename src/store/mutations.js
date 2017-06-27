@@ -9,7 +9,10 @@ export default {
     state.article = article
   },
   SET_COMMENTS: (state,comments) =>{
-    state.comments = coments;
+    state.comments = comments;
+  },
+  SET_COMMENT: (state,comment) => {
+    state.comment = comment
   },
   SET_USERS:(state,users) =>{
     state.users = users

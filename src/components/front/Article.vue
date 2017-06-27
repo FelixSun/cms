@@ -10,16 +10,7 @@
         <div class="content" v-html="article.content"></div>
       </article>
     </section>    
-    <div id='comment' class='comment'>
-      <div>
-        <input type='text' id='txtemail' v-model='email' class='txtemail' placeholder='邮箱地址'/>
-      </div>
-      <div>
-        <textarea id='txtcontent' v-model='contents' placeholder='走过，看过，请留下您的评论哦！'></textarea>
-         <p class="info">{{info}}</p>
-      </div>
-      <button class='subSaveComment' onclick='saveComments()'>Submit</button>
-    </div>    
+   <comments></comments>
     <my-footer></my-footer>
   </main>
 </template>
@@ -29,6 +20,7 @@
   import hljs         from '../../assets/js/highlight.pack'
   import MyHeader     from './MyHeader.vue'
   import MyFooter     from './MyFooter.vue'
+  import Comments    from './Comments.vue'
 
   export default{
     created(){      
@@ -58,7 +50,7 @@
         return state.article
       }
     }),
-    components: {MyHeader, MyFooter},
+    components: {MyHeader, MyFooter,Comments},
     watch: {
       '$route': ['fetchData', 'highlight']
     }

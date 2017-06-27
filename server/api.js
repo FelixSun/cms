@@ -27,7 +27,7 @@ router.get('/api/getArticles', (req, res) => {
 
 router.get('/api/getComments', (req, res) => {
   const articleID = req.query.id
-  db.Comment.find({articleID}, 'title date content', (err, doc) => {
+  db.Comment.find({articleID}, (err, doc) => {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -60,14 +60,16 @@ router.post('/api/readNum',(req,res)=> {
 })
 
 router.post('/api/saveComment', (req, res) => {
-  const id = req.body.id
+  var mydate = new Date();
+  var localtime = mydate.toLocaleString( )
   const comment = {
+    nickName:req.body.nickName,
     email: req.body.email,
-    contents: req.body.contents,
-    createdate: req.body.createdate,
-    articleID: id
-  }
-  new db.Comment(article).save()  
+    content: req.body.content,
+    createdate: localtime,
+    articleID: req.body.articleID
+  }  
+  new db.Comment(comment).save()  
   res.status(200).end()
 })
 
